@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: true})); // to support URL-encoded bodi
 var mongodb = require('mongodb');
 var uri = 'mongodb://tim:timtim@ds125774.mlab.com:25774/timbook';
 
-app.get('/chat', (req, res) => {
+app.get('/messages', (req, res) => {
 
 	mongodb.MongoClient.connect(uri, function(err, db) {
 		var messages = db.collection('messages');
@@ -41,14 +41,25 @@ app.get('/seedData', (req, res) => {
 
 		users.insert(userData, function(err, insertedUser) {
 
-			var insertedUserId1 = insertedUser.insertedIds[0];
-			var insertedUserId2 = insertedUser.insertedIds[1];
+			var insertedUserId1 = insertedUser.ops[0]._id;
+			var insertedUserName1 = insertedUser.ops[0].name;
+			var insertedUserId2 = insertedUser.ops[1]._id;
+			var insertedUserName2 = insertedUser.ops[1].name;
 
 			var chats = db.collection('chats');
 			var chatData = [
 				{
 					name: 'My chat',
-					participant_ids: [insertedUserId1, insertedUserId2]
+					participants: [
+						{
+							id: insertedUserId1,
+							name: insertedUserName1
+						},
+						{
+							id: insertedUserId2,
+							name: insertedUserName2
+						}
+					]
 				}
 			];
 
@@ -60,7 +71,10 @@ app.get('/seedData', (req, res) => {
 				var messageData = [
 					{
 						chat_id: insertedChatId1,
-						sender_id: insertedUserId1,
+						sender: {
+							id: insertedUserId1,
+							name: insertedUserName1
+						},
 						content: "Hello there :)"
 					}
 				];
