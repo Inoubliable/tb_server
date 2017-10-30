@@ -1,0 +1,75 @@
+@import 'base';
+
+body {
+	background-color: $bgc-main;
+	padding-top: 20px;
+}
+
+h1 {
+	color: $color-primary;
+}
+
+p {
+	color: $color-secondary;
+}
+
+.nav {
+	display: block;
+	width: 96%;
+	margin: auto;
+	background-color: $color-primary;
+	color: $color-light;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+.logo {
+	font-weight: 700;
+	font-size: 20px;
+	letter-spacing: 2px;
+	display: inline;
+	float: left;
+	margin-right: 30px;
+	color: $white;
+}
+
+.nav-left {
+	float: left;
+	overflow: hidden;
+}
+
+.nav-left li {
+	display: inline;
+	padding: 10px 18px 10px 20px;
+	font-size: 20px;
+	border-left: 2px solid $color-dark;
+}
+
+.nav-right {
+	list-style: none;
+	float: right;
+	overflow: hidden;
+}
+
+.nav-right li {
+	display: inline;
+	padding: 10px 18px 10px 20px;
+	font-size: 20px;
+}
+
+.nav-right li:not(:last-child) {
+	border-right: 2px solid $color-dark;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.icon a {
+	color: $color-light;
+}
+
+.icon:hover a {
+	color: $white;
+	cursor: pointer;
+}

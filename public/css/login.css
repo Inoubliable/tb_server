@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css?family=Lato|Roboto");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif; }
+
+html, body {
+  position: relative;
+  height: 100%; }
+
+a {
+  text-decoration: none; }
+
+ul {
+  list-style: none; }
+
+.clearfix {
+  clear: both; }
+
+form {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); }
+
+input {
+  display: block;
+  margin: 20px auto; }
+
+input[type="text"] {
+  border: none;
+  border-bottom: 2px solid #4d75a4;
+  font-size: 20px;
+  padding: 7px; }
+
+input[type="button"] {
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border-style: none;
+  color: #fff;
+  margin-top: 10px;
+  background-color: #4d75a4; }
+
+/*# sourceMappingURL=login.css.map */

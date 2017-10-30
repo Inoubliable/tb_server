@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/chat.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="js/chat.js"></script>
+	</head>
+	<body>
+
+		<div class="message-list">
+			<div class="message-list-header">
+				Messages (2)
+				<i class="fa fa-search" aria-hidden="true"></i>
+			</div>
+			<ul>
+				<li class="message-presentation active">
+					<div class="col-1">
+						<img class="user-image" src="images/bald.jpg" alt="Alex">
+					</div>
+					<div class="col-2">
+						<div class="user-name">Alex Wayne</div>
+						<div class="message-excerpt">Lorem ipsum dolor...</div>
+					</div>
+					<div class="col-3">
+						<div class="sent-time">1:55 PM</div>
+						<div class="new-messages">3</div>
+					</div>
+				</li>
+				<li class="message-presentation">
+					<div class="col-1">
+						<img class="user-image" src="images/Donald-Trump.jpg" alt="David">
+					</div>
+					<div class="col-2">
+						<div class="user-name">David Vane</div>
+						<div class="message-excerpt">Vestibulum ac diam sit met :D</div>
+					</div>
+					<div class="col-3">
+						<div class="sent-time">11:39 PM</div>
+					</div>
+				</li>
+				<li class="message-presentation">
+					<div class="col-1">
+						<img class="user-image" src="images/japanese.jpg" alt="Nancy">
+					</div>
+					<div class="col-2">
+						<div class="user-name">Nancy Dilan</div>
+						<div class="message-excerpt">Quam vehicula?</div>
+					</div>
+					<div class="col-3">
+						<div class="sent-time">0:28 AM</div>
+					</div>
+				</li>
+				<li class="message-presentation active">
+					<div class="col-1">
+						<img class="user-image" src="images/joeblack.jpg" alt="Patrick">
+					</div>
+					<div class="col-2">
+						<div class="user-name">Patrick Morison</div>
+						<div class="message-excerpt">Vivamus magna justo!!</div>
+					</div>
+					<div class="col-3">
+						<div class="sent-time">Jul 16</div>
+						<div class="new-messages">1</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="chat-main">
+			<div class="chat-main-header">
+				<div class="col-1">
+					<img class="user-image" src="images/bald.jpg" alt="Alex">
+				</div>
+				<div class="col-2">
+					<div class="user-name">Alex Wayne</div>
+					<div class="user-status">Online</div>
+				</div>
+				<div class="col-3">
+					<i class="fa fa-user-plus" aria-hidden="true"></i>
+					<i class="fa fa-cog" aria-hidden="true"></i>
+					<i class="fa fa-times" aria-hidden="true"></i>
+				</div>
+			</div>
+			<div class="chat"></div>
+			<div class="chat-input">
+				<input class="chat-text-input" type="text">
+				<input class="send-btn" type="submit" value="Send">
+			</div>
+		</div>
+
+	</body>
+</html>

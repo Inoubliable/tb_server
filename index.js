@@ -10,6 +10,56 @@ app.use(bodyParser.urlencoded({extended: true})); // to support URL-encoded bodi
 var mongodb = require('mongodb');
 var uri = 'mongodb://tim:timtim@ds125774.mlab.com:25774/timbook';
 
+// Add headers
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
+
+//app.use(express.static(__dirname+'/public'));
+
+app.post('/register', (req, res) => {
+	var name = parseFloat(req.body.name);
+	var surname = parseFloat(req.body.surname);
+	var email = parseFloat(req.body.email);
+
+	mongodb.MongoClient.connect(uri, function(err, db) {
+		var users = db.collection('users');
+
+		users.findOne({email: email}, function(err, user) {
+
+			if(user == null) {
+				res.redirect('/login');
+			} else {
+				res.json({'message': 'E-mail already exists!'});
+			}
+
+			db.close();
+		});
+	});
+
+});
+
+app.get('/login', (req, res) => {
+
+	res.sendFile(path.join(__dirname+'/public/login.html'));
+
+});
+
 app.get('/messages', (req, res) => {
 
 	mongodb.MongoClient.connect(uri, function(err, db) {
@@ -31,20 +81,29 @@ app.get('/seedData', (req, res) => {
 		var userData = [
 			{
 				name: 'Alex',
-				surname: 'Wayne'
+				surname: 'Wayne',
+				image: 'bald.jpg'
 			},
 			{
 				name: 'Jason',
-				surname: 'Mitchell'
+				surname: 'Mitchell',
+				image: 'japanese.jpg'
+			},
+			{
+				name: 'Vane',
+				surname: 'Vane',
+				image: 'Donald-Trump.jpg'
+			},
+			{
+				name: 'Patrick',
+				surname: 'Morison',
+				image: 'joeblack.jpg'
 			}
 		];
 
-		users.insert(userData, function(err, insertedUser) {
+		users.insert(userData, function(err, insertedUsers) {
 
-			var insertedUserId1 = insertedUser.ops[0]._id;
-			var insertedUserName1 = insertedUser.ops[0].name;
-			var insertedUserId2 = insertedUser.ops[1]._id;
-			var insertedUserName2 = insertedUser.ops[1].name;
+			var insertedUsersData = insertedUsers.ops;
 
 			var chats = db.collection('chats');
 			var chatData = [
@@ -73,9 +132,19 @@ app.get('/seedData', (req, res) => {
 						chat_id: insertedChatId1,
 						sender: {
 							id: insertedUserId1,
-							name: insertedUserName1
+							name: insertedUserName1,
+							image: insertedUserImage1
 						},
 						content: "Hello there :)"
+					},
+					{
+						chat_id: insertedChatId1,
+						sender: {
+							id: insertedUserId2,
+							name: insertedUserName2,
+							image: insertedUserImage2
+						},
+						content: "Ummmm, do I know you?"
 					}
 				];
 
